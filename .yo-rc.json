@@ -1,0 +1,37 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.aspire.blog.inventory"
+    },
+    "jhipsterVersion": "6.3.1",
+    "applicationType": "microservice",
+    "baseName": "inventory",
+    "packageName": "com.aspire.blog.inventory",
+    "packageFolder": "com/aspire/blog/inventory",
+    "serverPort": "8083",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": "kafka",
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": true,
+    "jwtSecretKey": "NjdmMzYxNjhjNDI1ZDk4MTcxZmQ2YjUyN2Y0YTYzOTYzNjc0ZjM5MjE4OGQzMWM5N2VhZTI3Y2ViYzVlZTAxMTVmNDI2ODZmNTcyN2EwYjg4ZmYyY2Y5MWNjNGY0NjZkZThiZjZjYzNiYzMxYjY5YTY2NDFkMzI3ODMwMDI5Njc=",
+    "embeddableLaunchScript": false,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "blueprints": [],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
