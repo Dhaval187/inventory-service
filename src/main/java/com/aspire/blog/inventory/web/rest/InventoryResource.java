@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.aspire.blog.inventory.service.InventoryService;
 import com.aspire.blog.inventory.service.dto.InventoryDTO;
 import com.aspire.blog.inventory.web.rest.errors.BadRequestAlertException;
+import com.aspire.blog.inventory.web.rest.errors.ResourceNotFoundException;
 
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -59,10 +60,12 @@ public class InventoryResource {
 	 */
 	@PostMapping("/inventories/{inventoryId}/{orderId}")
 	public ResponseEntity<Long> occupyInventory(@PathVariable Long inventoryId, @PathVariable Long orderId)
-			throws URISyntaxException {
+			throws Exception {
 		log.debug("REST request to occupy Inventory : {}", inventoryId);
 		if (inventoryId == null || orderId == null) {
 			throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+		} else if (!inventoryService.findOne(inventoryId).isPresent()) {
+			throw new ResourceNotFoundException("Not found", ENTITY_NAME, "notFound");
 		}
 		inventoryService.occupyInventory(inventoryId, orderId);
 		return ResponseEntity.created(new URI("/api/inventories/" + inventoryId))

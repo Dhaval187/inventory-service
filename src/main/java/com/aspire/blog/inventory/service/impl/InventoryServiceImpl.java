@@ -91,17 +91,18 @@ public class InventoryServiceImpl implements InventoryService {
 	 * @param orderId
 	 */
 	@Transactional
-	public void occupyInventory(Long inventoryId, Long orderId) {
+	public void occupyInventory(Long inventoryId, Long orderId) throws Exception {
 		log.debug("Request to occupy Inventory : {} & {}", inventoryId, orderId);
-		this.findOne(inventoryId).ifPresent(inventory -> {
-			Long quantity = inventory.getQuantity();
+		Optional<InventoryDTO> inventoryDTOOptional = this.findOne(inventoryId);
+		if (inventoryDTOOptional.isPresent()) {
+			InventoryDTO inventoryDTO = inventoryDTOOptional.get();
+			Long quantity = inventoryDTO.getQuantity();
 			if (quantity > 0) {
-				inventory.setQuantity(quantity - 1);
-				save(inventory, orderId);
-				inventoryKafkaProducer.sendMessage(Constants.TOPIC_INVENTORY_SUCCESS, orderId.toString());
+				inventoryDTO.setQuantity(quantity - 1);
+				save(inventoryDTO, orderId);
 			} else {
-				inventoryKafkaProducer.sendMessage(Constants.TOPIC_INVENTORY_FAILED, orderId.toString());
+				throw new Exception();
 			}
-		});
+		}
 	}
 }

@@ -40,6 +40,6 @@ public interface InventoryService {
 	 * @param inventoryId
 	 * @param orderId
 	 */
-	void occupyInventory(Long inventoryId, Long orderId);
+	void occupyInventory(Long inventoryId, Long orderId) throws Exception;
 
 }
